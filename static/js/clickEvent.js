@@ -1,3 +1,5 @@
+var aff = affutil;
+
 var genChartOffset = function () {
     document.getElementById('btn-generate').disabled = 'disabled';
 
@@ -174,6 +176,46 @@ var genArcCrease = function () {
     }
 
     getResult(ajaxdata, 5000, 'GET', 'arc/crease-line');
+}
+
+var getArcBetween = function () {
+    document.getElementById('btn-generate').disabled = 'disabled';
+    let arcstring1 = document.getElementById('text-arcstring-1').value;
+    let arcstring2 = document.getElementById('text-arcstring-2').value;
+    let count = document.getElementById('text-count').value;
+    let easing = document.getElementById('text-easing').value;
+    if (easing == '') easing = 's';
+    
+    let arc1 = aff.parseLine(arcstring1);
+    let arc2 = aff.parseLine(arcstring2);
+    let originTime = arc1.time;
+    arc1.moveto(0);
+    arc2.moveto(0);
+    let lastTime = arc1.toTime;
+    let color = arc1.color;
+    let isskyline = arc1.isskyline;
+
+    let step = lastTime / parseInt(count);
+    let result = aff.note.NoteGroup();
+    for (let i = 0; i < count; i++) {
+        let t1 = Math.floor(step * i);
+        let t2 = Math.floor(step * (i + 1));
+        result.push(aff.note.Arc(t1, t2, arc1.get(t1)[0], arc2.get(t2)[0], easing, arc1.get(t1)[1], arc2.get(t2)[1], color, isskyline));
+        let arc3 = arc1;
+        arc1 = arc2;
+        arc2 = arc3;
+    }
+
+    let textResult = document.getElementById('text-result');
+    textResult.value = aff.stringify(result);
+    textResult.removeAttribute('disabled');
+    textResult.select();
+    document.execCommand("copy");
+    textResult.disabled = true;
+    mdui.snackbar({
+        message: '已生成',
+        position: 'bottom'
+    });
 }
 
 var genArc = function () {
