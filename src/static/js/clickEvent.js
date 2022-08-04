@@ -178,7 +178,7 @@ var genArcCrease = function () {
     getResult(ajaxdata, 5000, 'GET', 'arc/crease-line');
 }
 
-var getArcBetween = function () {
+var genArcBetween = function () {
     document.getElementById('btn-generate').disabled = 'disabled';
     let arcstring1 = document.getElementById('text-arcstring-1').value;
     let arcstring2 = document.getElementById('text-arcstring-2').value;
@@ -188,22 +188,30 @@ var getArcBetween = function () {
     
     let arc1 = aff.parseLine(arcstring1);
     let arc2 = aff.parseLine(arcstring2);
-    let originTime = arc1.time;
-    arc1.moveto(0);
-    arc2.moveto(0);
-    let lastTime = arc1.toTime;
+    let offset = arc1.time;
     let color = arc1.color;
     let isskyline = arc1.isskyline;
+    arc1.time = 0;
+    arc2.time = 0;
+    arc1.totime -= offset;
+    arc2.totime -= offset;
+    let lastTime = arc1.totime;
 
     let step = lastTime / parseInt(count);
-    let result = aff.note.NoteGroup();
+    console.log(lastTime);
+    let result = new aff.note.NoteGroup();
     for (let i = 0; i < count; i++) {
         let t1 = Math.floor(step * i);
         let t2 = Math.floor(step * (i + 1));
-        result.push(aff.note.Arc(t1, t2, arc1.get(t1)[0], arc2.get(t2)[0], easing, arc1.get(t1)[1], arc2.get(t2)[1], color, isskyline));
+        result.push(new aff.note.Arc(t1, t2, arc1.get(t1)[0], arc2.get(t2)[0], easing, arc1.get(t1)[1], arc2.get(t2)[1], color, isskyline));
         let arc3 = arc1;
         arc1 = arc2;
         arc2 = arc3;
+    }
+    for (let i = 0; i < result.length; i++) {
+        const arc = result[i];
+        arc.time += offset;
+        arc.totime += offset;
     }
 
     let textResult = document.getElementById('text-result');

@@ -38,6 +38,10 @@ def create_app():
     @app.route('/arc-cutter')
     def arc_cutter():
         return render_template('arc-cutter.html')
+
+    @app.route('/arc-broken')
+    def arc_cutter():
+        return render_template('arc-broken.html')
     
     @app.route('/arc-rain')
     def arc_rain():
@@ -46,6 +50,10 @@ def create_app():
     @app.route('/arc-crease-line')
     def arc_crease_line():
         return render_template('arc-crease-line.html')
+
+    @app.route('/arc-between-line')
+    def between():
+        return render_template('arc-between-line.html')
 
     @app.route('/arc-animate')
     def arc_animate():
