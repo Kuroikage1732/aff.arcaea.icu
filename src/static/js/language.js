@@ -7,8 +7,10 @@ var kitUIArray = [
     'arc-split',
     'arc-splitbytiming',
     'arc-cutter',
+    'arc-broker',
     'arc-rain',
     'arc-crease-line',
+    'arc-between-line',
     'arc-animate',
     'timing-easing',
     'timing-glitch'

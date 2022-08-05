@@ -3,7 +3,7 @@
 {% block content %}
 <div class="mdui-card pjax-card" style="margin: 16px 16px 16px 16px; display: none;">
     <div class="mdui-typo" style="margin: 24px 24px 24px 24px;">
-        <h4 class="mdui-text-color-pink-accent i18n" name="arc-cutter-headword"></h4>
+        <h4 class="mdui-text-color-pink-accent i18n" name="arc-broker-headword"></h4>
         <div class=" mdui-container">
             <div class="mdui-row">
                 <div class="mdui-col-xs-12">
@@ -39,8 +39,8 @@
                         <i class="mdui-switch-icon"></i>
                     </label>
                 </div>
-                <div class="mdui-col-xs-10 mdui-col-sm-11" style="margin-top: 6px;">
-                    <p class="i18n" name="more"></p>
+                <div class="mdui-col-xs-10 mdui-col-sm-11 i18n" name="more" style="margin-top: 6px;">
+                    <p></p>
                 </div>
             </div>
             <div class="mdui-collapse">
@@ -48,21 +48,22 @@
                     <div class="mdui-collapse-item-body">
                         <div class="mdui-container-fluid">
                             <div class="mdui-row">
-                                <div class="mdui-col-xs-12 mdui-col-sm-6">
+                                <div class="mdui-xs-12 mdui-col-md-6">
                                     <div class="mdui-textfield mdui-textfield-input-card">
-                                        <label class="mdui-textfield-label i18n" name="arc-start"></label>
-                                        <input class="mdui-textfield-input " id="text-start" pattern="(\d+)" />
-                                        <div class="mdui-textfield-error i18n" name="err-natint-req"></div>
-                                        <div class="mdui-textfield-helper i18n" name="info-sel"></div>
+                                        <label class="mdui-textfield-label i18n" name="arc-type">Arc类型</label>
+                                        <input class="mdui-textfield-input " id="text-easing" pattern="(s|b|si|so|siso|sosi|sisi|soso)" placeholder="s/b/si/so/siso/sosi/sisi/soso"/>
+                                        <div class="mdui-textfield-error i18n" name="err-wrong-arc-type"></div>
+                                        <div class="mdui-textfield-helper i18n" name="info-sel-def-s"></div>
                                     </div>
                                 </div>
-                                <div class="mdui-col-xs-12 mdui-col-sm-6">
-                                    <div class="mdui-textfield mdui-textfield-input-card">
-                                        <label class="mdui-textfield-label i18n" name="arc-stop"></label>
-                                        <input class="mdui-textfield-input " id="text-stop" pattern="(\d+)" />
-                                        <div class="mdui-textfield-error i18n" name="err-natint-req"></div>
-                                        <div class="mdui-textfield-helper i18n" name="info-sel"></div>
-                                    </div>
+                                <div class="mdui-col-xs-3 mdui-col-md-2">
+                                    <p style="margin-top: 52px;" class="i18n" name='base-sel'></p>
+                                </div>
+                                <div class="mdui-col-xs-6 mdui-col-md-4">
+                                    <select class="mdui-select" id='sel-mode' style="margin-top: 46px;">
+                                        <option value="m" selected class="i18n" name="opt-mid"></option>
+                                        <option value="b" class="i18n" name="opt-bor"></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -39,9 +39,9 @@ def create_app():
     def arc_cutter():
         return render_template('arc-cutter.html')
 
-    @app.route('/arc-broken')
-    def arc_cutter():
-        return render_template('arc-broken.html')
+    @app.route('/arc-broker')
+    def arc_broker():
+        return render_template('arc-broker.html')
     
     @app.route('/arc-rain')
     def arc_rain():
